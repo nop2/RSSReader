@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+
+<links>
+	<link>
+		<title>IT之家</title>
+		<uri>https://www.ithome.com/rss/</uri>
+		<defaultShow>true</defaultShow>
+	</link>
+	<link>
+		<title>知乎每日精选</title>
+		<uri>https://zhihu.com/rss</uri>
+		<defaultShow>true</defaultShow>
+	</link>
+</links>
