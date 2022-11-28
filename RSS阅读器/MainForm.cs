@@ -18,6 +18,31 @@ namespace RSS阅读器
             InitRssItems();
             timer1.Tick += (_, _) => { timeToolStripStatusLabel.Text = DateTime.Now.ToLongTimeString(); };
             KeyPreview = true;
+
+            StartMonitoring();
+        }
+
+        /// <summary>
+        /// 开启另一个线程监视RssLink文件改动并自动更新
+        /// </summary>
+        private void StartMonitoring()
+        {
+            var startTime = File.GetLastWriteTime("RssLinks.xml");
+
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(1000);
+                    var lastWriteTime = File.GetLastWriteTime("RssLinks.xml");
+                    if (lastWriteTime != startTime)
+                    {
+                        // 切换到UI线程执行更新
+                        Invoke(InitRssItems);
+                    }
+                }
+            });
+
         }
 
 
